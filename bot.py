@@ -5,6 +5,7 @@ from discord.ext import commands
 import os
 import json
 import asyncio
+from discord_slash import SlashCommand, SlashContext
 
 # Gets all the servers custom prefixes.
 def getPrefixes(client, message):
@@ -15,6 +16,7 @@ def getPrefixes(client, message):
 # Sets prefix, intents and the client variable.
 intents = discord.Intents(members=True, guilds=True, emojis=True, messages=True, reactions=True)
 client = commands.Bot(command_prefix=getPrefixes, help_command=None, intents=intents)
+slash = SlashCommand(client, sync_commands=True, sync_on_cog_reload=True)
 
 # Loads all the commands
 def LoadFolder(folder: str):
